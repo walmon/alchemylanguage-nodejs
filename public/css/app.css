@@ -351,4 +351,16 @@ img.icons {
     margin-left: 2em;
     margin-top: 1em;
   }
+  .banner--service-resource {
+    margin-left: 0%;
+}
+
+  .base--h1 {
+    font-size: 2em;
+}
+.right-float {
+    width: 100%;
+}
+
+
 }
