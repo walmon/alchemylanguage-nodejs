@@ -43,10 +43,10 @@ app.post('/api/:method', function(req, res, next) {
 });
 
 app.get('/', function(req, res) {
-  res.render('index', {
-    ga: process.env.GOOGLE_ANALYTICS,
-    ct: req._csrfToken
-  });
+  res.render('index');
 });
+
+// error-handler settings
+require('./config/error-handler')(app);
 
 module.exports = app;
