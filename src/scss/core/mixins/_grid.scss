@@ -36,7 +36,7 @@
     $grid-width: $grid-width + $gutter-width;
   }
 
-  width: #{($grid-width)}%;
+  width: #{($grid-width) + '%'};
   @include _gutter($gutter-width, $has-left-gutter, $has-right-gutter, $push-left-width: $push-left-width);
   float: left;
   display: block;
@@ -78,10 +78,10 @@
     $margin-left: $margin-left + $gutter-width;
   }
   @if ($margin-left > 0rem) {
-    margin-left: #{$margin-left}%;
+    margin-left: #{($margin-left) + '%'};
   }
 
   @if $right == true {
-    margin-right: #{$gutter-width}%;
+    margin-right: #{($gutter-width) + '%'};
   }
 }
