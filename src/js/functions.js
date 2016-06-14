@@ -183,7 +183,7 @@ $(document).ready(function() {
       $('.loading').show();
     });
     $(document).ajaxError(function() {
-      $(".error").empty();
+      $('.error').empty();
       $('.error').show();
       $('.error').text('There has been an error in processing your request.');
     });
