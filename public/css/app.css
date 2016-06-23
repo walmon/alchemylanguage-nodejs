@@ -108,7 +108,8 @@
 .btn-all-results-entities,
 .btn-all-results-concepts,
 .btn-all-results-targetsentiment,
-.btn-all-results-relations {
+.btn-all-results-relations,
+.btn-all-results-typedrelations {
   cursor: pointer;
   color: #435D7E;
   text-decoration: underline;
@@ -120,15 +121,37 @@
   display: block;
 }
 
+.resultscontainter {
+    border: 1px solid #d5d6d5;
+    margin-bottom: 20px;
+}
 .nested-relations {
   font-size: .9em;
 }
 
+input, select {
+    margin-top: -5px;
+}
+.choose-header {
+  font-size: 2em;
+  font-weight: 400;
+  margin-bottom: 5px;
+}
 .output-header-tagline {
   font-size: .9em;
   margin-top: 5px;
   padding-left: 1em;
   padding-right: 1em;
+}
+.options {
+    font-size: 1em;
+    margin-right: 20px;
+    color: #5a5a5a;
+}
+
+
+.base--h2 {
+    font-size: 2.48em;
 }
 
 .icon-hyperlink {
@@ -159,6 +182,10 @@
 .hiden-relation {
   display: none;
 }
+.breaktext {
+  word-wrap: break-word;
+}
+
 
 .content-relations {
   background: #ffffff;
@@ -180,6 +207,7 @@
 #div11,
 #div12,
 #div13,
+#div20,
 .base--table,
 #div14,
 .banner--row {
@@ -211,10 +239,12 @@
 
 .base--a:visited {
   color: #435D7E;
+
 }
 
 .base--a {
   color: #435D7E;
+
 }
 
 .relations-headline {
@@ -241,6 +271,7 @@
   -ms-transition: background-color 1s;
   -o-transition: background-color 1s;
   transition: background-color 1s;
+  text-decoration: none;
 }
 
 .bottom-links:hover {
@@ -319,7 +350,10 @@ img.icons {
   border-top: 2px solid #ececec;
   display: block;
 }
-
+.error {
+    color: red;
+    margin-bottom: 1em;
+}
 @media (max-width: 700px) {
   .left-box {
     width: 100%;
@@ -351,4 +385,16 @@ img.icons {
     margin-left: 2em;
     margin-top: 1em;
   }
+  .banner--service-resource {
+    margin-left: 0%;
+}
+
+  .base--h1 {
+    font-size: 2em;
+}
+.right-float {
+    width: 100%;
+}
+
+
 }

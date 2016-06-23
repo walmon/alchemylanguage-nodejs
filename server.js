@@ -3,9 +3,12 @@
 
 require('dotenv').config({silent: true});
 
-if (process.env.GOOGLE_ANALYTICS) {
-  process.env.GOOGLE_ANALYTICS = process.env.GOOGLE_ANALYTICS.replace(/\"/g, '');
-}
+['GOOGLE_ANALYTICS', 'API_KEY', 'CAPTCHA_SITE', 'CAPTCHA_SECRET'].forEach(function(key) {
+  if (key in process.env) {
+    process.env[key] = process.env[key].replace(/\"/g, '');
+  }
+});
+
 // Deployment tracking
 require('cf-deployment-tracker-client').track();
 

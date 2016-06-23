@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="ct" content="<$= ct $>">
+  <meta name="ct" content="<$= locals.ct $>">
   <meta property="og:image" content="/images/app.png" />
   <meta property="og:title" content="AlchemyLanguage demo" />
   <meta property="og:description" content="AlchemyLanguage is a collection of APIs that offer text analysis through natural language processing. This set of APIs can analyze text to help you understand its concepts, entities, keywords, sentiment, and more." />
@@ -36,7 +36,7 @@
         </li>
         <li class="base--li heading-nav--li" role="presentation">
           <a class="heading-nav--item" href="https://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/starter-kits.html" target="_blank" role="menuitem">
-						App Gallery
+						Starter Kits
 					</a>
         </li>
         <li class="base--li heading-nav--li" role="presentation">
@@ -197,7 +197,8 @@
               </p>
 
               <div class="btn-all-container">
-                <div class="base--p right-float"><span class="icon"><img src="images/icons/code.svg" alt="View JSON"></span>
+                <div class="base--p right-float">
+                  <span class="icon icon-code"></span>
                   <span class="base--a json-btn" target="39" href="">View JSON</span>
                 </div>
               </div>
@@ -478,6 +479,7 @@
               </p>
               <div class="btn-all-container">
                 <div class="base--p right-float">
+                  <span class="icon icon-code"></span>
                   <span class="base--a json-btn" target="54" href="">View JSON</span>
                 </div>
               </div>
@@ -600,6 +602,7 @@
                 Extracts the publication date from a webpage or HTML document. </p>
               <div class="btn-all-container">
                 <div class="base--p right-float">
+                  <span class="icon icon-code"></span>
                   <span class="base--a json-btn" target="48" href="">View JSON</span>
                 </div>
               </div>
@@ -629,21 +632,17 @@
       </div>
 
     </div>
-    <div class="_demo--banner bottom-banner ">
-
-      <div class="footer-banner">
-        <div class="_demo--container footer-container">
-          <div class="footer-title">Next Up: Build your own app</div>
-
-          <div class="footer-tagline">Use AlchemyLanguage to get started.</div>
-
-          <div class="base--a bottom-links" href="https://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/alchemy-language/api/v1/">API Reference</div>
-          <div class="base--a bottom-links" href="https://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/alchemy-language.html">Documentation</div>
-          <div class="base--a bottom-links" href="https://github.com/watson-developer-cloud/alchemylanguage-nodejs">Fork on Github</div>
-          <div class="base--a bottom-links" href="https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/alchemylanguage-nodejs">Deploy on Bluemix</div>
+        <div class="_demo--banner bottom-banner ">
+            <div class="footer-banner">
+                <div class="_demo--container footer-container">
+                    <div class="footer-title">Next Up: Build your own app</div>
+                    <div class="footer-tagline">Use AlchemyLanguage to get started.</div>
+                    <a href="https://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/alchemy-language/api/v1/" target="_blank" class="base--a bottom-links">API Reference</a>
+                    <a href="https://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/alchemy-language.html" target="_blank" class="base--a bottom-links">Documentation</a>
+                    <a href="https://github.com/watson-developer-cloud/alchemylanguage-nodejs" target="_blank" class="base--a bottom-links">Fork on Github</a>
+                    <a href="https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/alchemylanguage-nodejs" target="_blank" class="base--a bottom-links">Deploy on Bluemix</a></div>
+            </div>
         </div>
-      </div>
-    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <script type="text/html" id="entitiesTemplate">

@@ -6,7 +6,7 @@ cache:
 node_js: stable
 script:
   - npm run lint
-  - npm test
+  - npm run codecov
 deploy:
   provider: cloudfoundry
   api: https://api.ng.bluemix.net

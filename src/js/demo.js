@@ -33,6 +33,7 @@ $(document).ready(function() {
   var relations_template = relationsTemplate.innerHTML;
   var text_template = textTemplate.innerHTML;
   var date_template = dateTemplate.innerHTML;
+  var typedrelations_template = typedRelationsTemplate.innerHTML;
 
   $('.tab-panels--tab').click(function(e) {
     e.preventDefault();
@@ -46,11 +47,19 @@ $(document).ready(function() {
     $(idName).addClass('active');
   });
 
-  $('.base--button_submit').click(function() {
+  $('#submitbutton').click(function() {
     if ($('.tab-panels--tab.active').text() === 'Body of Text') {
       callAPIswithText($('.input--text').val());
     } else {
       callAPIswithURL($('.input--URL').val());
+    }
+  });
+
+  $('#submitbutton-tr').click(function() {
+    if ($('.tab-panels--tab.active').text() === 'Body of Text') {
+      callAPIswithTR($('.input--text').val());
+    } else {
+      callAPIswithTRURL($('.input--URL').val());
     }
   });
 
@@ -69,13 +78,21 @@ $(document).ready(function() {
     getLanguageTaxonomy(text);
     getLanguageText();
     getLanguageTitle();
+    gettypedRelations(text);
   }
-
+  function callAPIswithTR(text) {
+    getLanguageEntitiesTyped(text);
+    gettypedRelationsTyped(text);
+  }
+  function callAPIswithTRURL(url) {
+    getLanguageEntitiesTypedURL(url);
+    gettypedRelationsTypedURL(url);
+  }
   function callAPIswithURL(url) {
     getAuthorsURL(url);
     getLanguageConceptsURL(url);
     getLanguageDateURL(url);
-    getLanguageEmotion(url);
+    getLanguageEmotionURL(url);
     getLanguageSentiment(url);
     getLanguageEntitiesURL(url);
     getLanguageFeedsURL(url);
@@ -86,27 +103,24 @@ $(document).ready(function() {
     getLanguageTaxonomyURL(url);
     getLanguageTextURL(url);
     getLanguageTitleURL(url);
+    gettypedRelationsURL(url);
   }
-
   function getAuthors() {
     $('.authors-table').html('<tr class="base--tr"><td class="base--td">This function only gives results with a URL input. Please try using a URL to see results.</td></tr>');
   }
-
   function getLanguageDate() {
     $('.date-table').html('<tr class="base--tr"><td class="base--td">This function only gives results with a URL input. Please try using a URL to see results.</td></tr>');
   }
-
   function getLanguageFeeds() {
     $('.feeds-table').html('<tr class="base--tr"><td class="base--td">This function only gives results with a URL input. Please try using a URL to see results.</td></tr>');
   }
-
   function getLanguageText() {
     $('.text-table').html('<tr class="base--tr"><td class="base--td">This function only gives results with a URL input. Please try using a URL to see results.</td></tr>');
   }
-
   function getLanguageTitle() {
     $('.title-table').html('<tr class="base--tr"><td class="base--td">This function only gives results with a URL input. Please try using a URL to see results.</td></tr>');
   }
+
 
   function getLanguageConcepts(text) {
     $('.conceptsTemplate').html('');
@@ -120,7 +134,8 @@ $(document).ready(function() {
 
       $('#concept-API-data').empty();
       $('#concept-API-data').html(JSON.stringify(data, null, 2));
-    }).fail(_error);
+    })
+    .fail(_error);
   }
 
   function getLanguageEmotion(text) {
@@ -167,6 +182,104 @@ $(document).ready(function() {
       }).fail(_error);
       $('#targetedsentiment-API-data').empty();
       $('#targetedsentiment-API-data').html(JSON.stringify(data, null, 2));
+    }).fail(_error);
+  }
+
+  function gettypedRelations(text) {
+    var model = $('#model').val();
+    $.post('/api/typedRelations', {
+      'text': text,
+      model: model,
+      entities: 1,
+      keywords: 1,
+      arguments: 1
+    }, function(data) {
+      $('.typedrelations-table').html(_.template(typedrelations_template, {
+        items: data.typedRelations
+      }));
+      $('#typedrelations-API-data').empty();
+      $('#typedrelations-API-data').html(JSON.stringify(data, null, 2));
+    }).fail(_error);
+  }
+
+  function gettypedRelationsURL(url) {
+    var model = $('#model').val();
+    $.post('/api/typedRelations', {
+      'url': url,
+      model: model,
+      entities: 1,
+      keywords: 1,
+      arguments: 1
+    }, function(data) {
+      $('.typedrelations-table').html(_.template(typedrelations_template, {
+        items: data.typedRelations
+      }));
+      $('#typedrelations-API-data').empty();
+      $('#typedrelations-API-data').html(JSON.stringify(data, null, 2));
+    }).fail(_error);
+  }
+
+  function gettypedRelationsTyped(text) {
+    var model = $('#model').val();
+    $.post('/api/typedRelations', {
+      'text': text,
+      model: model,
+      entities: 1,
+      keywords: 1,
+      arguments: 1
+    }, function(data) {
+      $('.typedrelations-table').html(_.template(typedrelations_template, {
+        items: data.typedRelations
+      }));
+      $('#typedrelations-API-data').empty();
+      $('#typedrelations-API-data').html(JSON.stringify(data, null, 2));
+    }).fail(_error);
+  }
+
+  function gettypedRelationsTypedURL(url) {
+    var model = $('#model').val();
+    $.post('/api/typedRelations', {
+      'url': url,
+      model: model,
+      entities: 1,
+      keywords: 1,
+      arguments: 1
+    }, function(data) {
+      $('.typedrelations-table').html(_.template(typedrelations_template, {
+        items: data.typedRelations
+      }));
+      $('#typedrelations-API-data').empty();
+      $('#typedrelations-API-data').html(JSON.stringify(data, null, 2));
+    }).fail(_error);
+  }
+
+  function getLanguageEntitiesTyped(text) {
+    var model = $('#model').val();
+    $.post('/api/entities', {
+      'text': text,
+      model: model,
+      sentiment: 1
+    }, function(data) {
+      $('.entities-table').html(_.template(entities_template, {
+        items: data.entities
+      }));
+      $('#entities-API-data').empty();
+      $('#entities-API-data').html(JSON.stringify(data, null, 2));
+    }).fail(_error);
+  }
+
+  function getLanguageEntitiesTypedURL(url) {
+    var model = $('#model').val();
+    $.post('/api/entities', {
+      'url': url,
+      model: model,
+      sentiment: 1
+    }, function(data) {
+      $('.entities-table').html(_.template(entities_template, {
+        items: data.entities
+      }));
+      $('#entities-API-data').empty();
+      $('#entities-API-data').html(JSON.stringify(data, null, 2));
     }).fail(_error);
   }
 
@@ -248,6 +361,18 @@ $(document).ready(function() {
 
       $('#authors-API-data').empty();
       $('#authors-API-data').html(JSON.stringify(data, null, 2));
+    }).fail(_error);
+  }
+
+  function getLanguageEmotionURL(url) {
+    $.post('/api/emotion', {
+      'url': url
+    }, function(data) {
+      $('.emotion-table').html(_.template(emotion_template, {
+        items: data.docEmotions
+      }));
+      $('#emotion-API-data').empty();
+      $('#emotion-API-data').html(JSON.stringify(data, null, 2));
     }).fail(_error);
   }
 
