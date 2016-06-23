@@ -30,6 +30,7 @@ module.exports = function(app) {
       code: err.code || 500,
       error: err.error || err.message
     };
+    console.error(error);
     res.status(error.code).json(error);
   });
 };
