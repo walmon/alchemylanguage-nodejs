@@ -121,6 +121,8 @@ $(document).ready(function() {
     $('.base--code').hide();
     $('#submitbutton').hide();
     $('.url-tab').hide();
+    $('#panel1').addClass('active');
+    $('#panel2').removeClass('active');
     $('#model').val('en-us-tir');
     $('#submitbutton-tr').show();
     $('.relevance').empty();
