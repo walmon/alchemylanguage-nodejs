@@ -7,3 +7,5 @@ public/fonts/icon-fonts/*
 public/js/
 public/css/style.css
 .env
+.jshintignore
+.jshintrc
