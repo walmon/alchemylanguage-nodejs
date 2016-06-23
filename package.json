@@ -33,7 +33,8 @@
     "test": "istanbul cover ./node_modules/mocha/bin/_mocha",
     "lint": "eslint .",
     "autofix": "eslint --fix .",
-    "codecov": "npm run test && (codecov || true)"
+    "codecov": "npm run test && (codecov || true)",
+    "validate": "npm ls"
   },
   "dependencies": {
     "body-parser": "^1.13.2",
@@ -48,6 +49,7 @@
     "glob": "^7.0.3",
     "helmet": "^2.1.0",
     "morgan": "^1.7.0",
+    "precommit-hook": "^3.0.0",
     "request": "^2.72.0",
     "watson-developer-cloud": "^1.8.0"
   },
@@ -74,5 +76,10 @@
   },
   "engines": {
     "node": ">= 4.2.4"
-  }
+  },
+  "pre-commit": [
+    "lint",
+    "validate",
+    "test"
+  ]
 }
