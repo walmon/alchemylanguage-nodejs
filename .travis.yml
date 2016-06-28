@@ -20,5 +20,5 @@ deploy:
     - cf-blue-green-travis
   on:
     branch: master
-    repo: watson-developer-cloud/alchemylanguage-demo
+    repo: watson-developer-cloud/alchemylanguage-nodejs
   skip_cleanup: true
