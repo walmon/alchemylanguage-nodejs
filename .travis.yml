@@ -7,14 +7,18 @@ node_js: stable
 script:
   - npm run lint
   - npm run codecov
+env:
+  global:
+  - CF_APP=alchemy-language-demo
+  - CF_API=https://api.ng.bluemix.net
+  - CF_ORGANIZATION=WatsonPlatformServices
+  - CF_SPACE=demos
+before_deploy: npm install -g cf-blue-green
 deploy:
-  provider: cloudfoundry
-  api: https://api.ng.bluemix.net
-  username: $CF_USERNAME
-  password: $CF_PASSWORD
-  name: alchemy-language-demo
-  organization: WatsonPlatformServices
-  space: demos
+  provider: script
+  script:
+    - cf-blue-green-travis
   on:
-    repo: watson-developer-cloud/alchemylanguage-nodejs
     branch: master
+    repo: watson-developer-cloud/alchemylanguage-demo
+  skip_cleanup: true
