@@ -192,10 +192,8 @@ $(document).ready(function() {
   }
 
   function gettypedRelations(text) {
-    var model = $('#model').val();
     $.post('/api/typedRelations', {
       'text': text,
-      model: model,
       entities: 1,
       keywords: 1,
       arguments: 1
@@ -209,10 +207,8 @@ $(document).ready(function() {
   }
 
   function gettypedRelationsURL(url) {
-    var model = $('#model').val();
     $.post('/api/typedRelations', {
       'url': url,
-      model: model,
       entities: 1,
       keywords: 1,
       arguments: 1

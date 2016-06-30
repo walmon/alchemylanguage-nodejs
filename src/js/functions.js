@@ -102,7 +102,6 @@ $(document).ready(function() {
     $('.custom-desc').hide();
     $('.standard-desc').show();
     $('.url-tab').show();
-    $('#model').val('ie-en-news');
     $('#submitbutton').show();
     $('#submitbutton-tr').hide();
     $('#div2,#div3,#div4,#div6,#div7,#div8,#div9,#div10,#div11,#div12,#div13,#div14,#div20').hide();
@@ -123,7 +122,6 @@ $(document).ready(function() {
     $('.url-tab').hide();
     $('#panel1').addClass('active');
     $('#panel2').removeClass('active');
-    $('#model').val('en-us-tir');
     $('#submitbutton-tr').show();
     $('.relevance').empty();
     $('.custom-desc').show();
@@ -253,6 +251,7 @@ $(document).ready(function() {
   $('.container').hide();
   $('#submitbutton').click(function() {
     $('.loading').show();
+    $('.error').empty();
     $('.container').hide();
     $(document).ajaxStart(function() {
       $('.loading').show();
