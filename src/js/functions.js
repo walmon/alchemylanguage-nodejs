@@ -101,7 +101,10 @@ $(document).ready(function() {
     $('#div5').show();
     $('.custom-desc').hide();
     $('.standard-desc').show();
-    $('.url-tab').show();
+    $('#panel1').addClass('active');
+    $('#panel2').removeClass('active');
+    $('.text-link').addClass('active');
+    $('.url-link').removeClass('active');
     $('#submitbutton').show();
     $('#submitbutton-tr').hide();
     $('#div2,#div3,#div4,#div6,#div7,#div8,#div9,#div10,#div11,#div12,#div13,#div14,#div20').hide();
@@ -114,12 +117,13 @@ $(document).ready(function() {
     $('#custom').removeClass('selected-input');
     $('.input--text').text(
           "In 2009, Elliot Turner launched AlchemyAPI to process the written word, with all of its quirks and nuances, and got immediate traction. That first month, the company\'s eponymous language-analysis API processed 500,000 transactions. Today it\'s processing three billion transactions a month, or about 1,200 a second. \"That's a growth rate of 6,000 times over three years,\" touts Turner. \"Context is super-important,\" he adds. \"I\'m dying\' is a lot different than \'I'm dying to buy the new iPhone.\'\" \"As we move into new markets, we're going to be making some new hires,\" Turner says. \"We knocked down some walls and added 2,000 square feet to our office.\" \"We\'re providing the ability to translate human language in the form of web pages and documents into actionable data,\" Turner says. Clients include Walmart, PR Newswire and numerous publishers and advertising networks. \"This allows a news organization to detect what a person likes to read about,\" says Turner of publishers and advertisers.");
+    $('.input--URL').text("http://confluence-denver.com/innovationnews/alchemyapi_booming.aspx");
   });
   $('#custom').click(function() {
     $('.container').hide();
     $('.base--code').hide();
     $('#submitbutton').hide();
-    $('.url-tab').hide();
+    // $('.url-tab').hide();
     $('#panel1').addClass('active');
     $('#panel2').removeClass('active');
     $('#submitbutton-tr').show();
@@ -142,6 +146,8 @@ $(document).ready(function() {
     $('#custom').addClass('selected-input');
     $('.input--text').text(
           "This on-site investigation focused on the performance of the Certified Advanced 208-Compliant air bag system in a 2005 Ford Escape XLT 4x4 sport utility vehicle. This two-vehicle crash occurred in July 2004 at 1539 hours in the state of Colorado. The crash occurred on a curved portion of a three-lane interstate roadway. The Ford Escape lost control on an interstate highway and struck a concrete barrier on the right side of the roadway. The impact resulted in sufficient longitudinal deceleration of the Escape to command the deployment of the frontal air bag system and actuation of the driver's seat belt pretensioner. The vehicle rotated out from the initial wall impact and was subsequently struck by a 2013 BYD Qin pulling a single trailer. The restrained 48-year-old male driver of the Escape appears to have sustained a minor facial injury. The driver of Qin did not report any injuries.");
+    $('.input--URL').text("http://newyork.cbslocal.com/2016/02/06/brooklyn-woman-school-bus");
+
   });
   // Only show a limited list of results instially
   $(document).ajaxComplete(function() {
