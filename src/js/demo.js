@@ -58,6 +58,8 @@ $(document).ready(function() {
   $('#submitbutton-tr').click(function() {
     if ($('.tab-panels--tab.active').text() === 'Body of Text') {
       callAPIswithTR($('.input--text').val());
+    } else {
+      callAPIswithTRurl($('.input--URL').val());
     }
   });
 
@@ -81,6 +83,11 @@ $(document).ready(function() {
   function callAPIswithTR(text) {
     getLanguageEntitiesTyped(text);
     gettypedRelationsTyped(text);
+  }
+
+  function callAPIswithTRurl(url) {
+    getLanguageEntitiesTypedURL(url);
+    gettypedRelationsTypedURL(url);
   }
   function callAPIswithURL(url) {
     getAuthorsURL(url);
@@ -238,11 +245,42 @@ $(document).ready(function() {
     }).fail(_error);
   }
 
-
   function getLanguageEntitiesTyped(text) {
     var model = $('#model').val();
     $.post('/api/entities', {
       'text': text,
+      model: model,
+      sentiment: 1
+    }, function(data) {
+      $('.entities-table').html(_.template(entities_template, {
+        items: data.entities
+      }));
+      $('#entities-API-data').empty();
+      $('#entities-API-data').html(JSON.stringify(data, null, 2));
+    }).fail(_error);
+  }
+
+  function gettypedRelationsTypedURL(url) {
+    var model = $('#model').val();
+    $.post('/api/typedRelations', {
+      'url': url,
+      model: model,
+      entities: 1,
+      keywords: 1,
+      arguments: 1
+    }, function(data) {
+      $('.typedrelations-table').html(_.template(typedrelations_template, {
+        items: data.typedRelations
+      }));
+      $('#typedrelations-API-data').empty();
+      $('#typedrelations-API-data').html(JSON.stringify(data, null, 2));
+    }).fail(_error);
+  }
+
+  function getLanguageEntitiesTypedURL(url) {
+    var model = $('#model').val();
+    $.post('/api/entities', {
+      'url': url,
       model: model,
       sentiment: 1
     }, function(data) {
