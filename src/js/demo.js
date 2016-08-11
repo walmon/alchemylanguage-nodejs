@@ -98,7 +98,7 @@ $(document).ready(function() {
     getLanguageEntitiesURL(url);
     getLanguageFeedsURL(url);
     getLanguageKeywordsURL(url);
-    getLanguageLanguage(url);
+    getLanguageLanguageURL(url);
     getLanguageRelationsURL(url);
     getLanguageTargetedSentimentURL(url);
     getLanguageTaxonomyURL(url);
@@ -478,6 +478,18 @@ $(document).ready(function() {
       }));
       $('#keywords-API-data').empty();
       $('#keywords-API-data').html(JSON.stringify(data, null, 2));
+    }).fail(_error);
+  }
+
+  function getLanguageLanguageURL(text) {
+    $.post('/api/language', {
+      'url': text
+    }, function(data) {
+      $('.language-table').html(_.template(language_template, {
+        item: data
+      }));
+      $('#language-API-data').empty();
+      $('#language-API-data').html(JSON.stringify(data, null, 2));
     }).fail(_error);
   }
 
