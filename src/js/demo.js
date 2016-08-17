@@ -154,8 +154,6 @@ $(document).ready(function() {
     }).fail(_error);
   }
 
-
-
    function getTargetedEmotion(text) {
      var keywordsArray = [];
      $.post('/api/keywords', {
@@ -179,7 +177,7 @@ $(document).ready(function() {
      }).fail(_error);
    }
 
-    function getTargetedEmotionURL(url) {
+   function getTargetedEmotionURL(url) {
       var keywordsArray = [];
       $.post('/api/keywords', {
         'url': url,
@@ -403,16 +401,16 @@ $(document).ready(function() {
   }
 
   function getLanguageLanguageURL(url) {
-  $.post('/api/language', {
-    'url': url
-  }, function(data) {
-    $('.language-table').html(_.template(language_template, {
-      item: data
-    }));
-    $('#language-API-data').empty();
-    $('#language-API-data').html(JSON.stringify(data, null, 2));
-  }).fail(_error);
-}
+    $.post('/api/language', {
+      'url': url
+    }, function(data) {
+      $('.language-table').html(_.template(language_template, {
+        item: data
+      }));
+      $('#language-API-data').empty();
+      $('#language-API-data').html(JSON.stringify(data, null, 2));
+    }).fail(_error);
+  }
 
 
   function getLanguageTaxonomy(text) {
