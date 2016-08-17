@@ -153,6 +153,7 @@ $(document).ready(function() {
       $('#emotion-API-data').html(JSON.stringify(data, null, 2));
     }).fail(_error);
   }
+
   function getTargetedEmotion(text) {
     var keywordsArray = [];
     $.post('/api/keywords', {
@@ -160,7 +161,7 @@ $(document).ready(function() {
       emotion: 1
     }, function(data) {
       data.keywords.forEach(function(keyword) {
-        keywordsArray.push(keyword.text);
+      keywordsArray.push(keyword.text);
       });
       $.post('/api/emotion', {
         'text': text,
