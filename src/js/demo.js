@@ -161,7 +161,7 @@ $(document).ready(function() {
       emotion: 1
     }, function(data) {
       data.keywords.forEach(function(keyword) {
-      keywordsArray.push(keyword.text);
+        keywordsArray.push(keyword.text);
       });
       $.post('/api/emotion', {
         'text': text,
