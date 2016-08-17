@@ -402,6 +402,19 @@ $(document).ready(function() {
     }).fail(_error);
   }
 
+  function getLanguageLanguageURL(url) {
+  $.post('/api/language', {
+    'url': url
+  }, function(data) {
+    $('.language-table').html(_.template(language_template, {
+      item: data
+    }));
+    $('#language-API-data').empty();
+    $('#language-API-data').html(JSON.stringify(data, null, 2));
+  }).fail(_error);
+}
+
+
   function getLanguageTaxonomy(text) {
     $.post('/api/taxonomy', {
       'text': text
