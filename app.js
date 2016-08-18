@@ -24,7 +24,7 @@ var watson = require('watson-developer-cloud');
 require('./config/express')(app);
 
 // if bluemix credentials exists, then override local
-var alchemyLanguage = watson.alchemy_language({
+var alchemyLanguage = new watson.AlchemyLanguageV1({
   api_key: process.env.API_KEY || '<api-key>'
 });
 
