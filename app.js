@@ -23,7 +23,7 @@ var watson = require('watson-developer-cloud');
 // Bootstrap application settings
 require('./config/express')(app);
 
-// if bluemix credentials exists, then override local
+// If no API Key is provided here, the watson-developer-cloud@2.x.x library will check for an ALCHEMY_LANGUAGE_API_KEY environment property and then fall back to the VCAP_SERVICES property provided by Bluemix.
 var alchemyLanguage = new watson.AlchemyLanguageV1({
 // api_key: '<api-key>'
 });
