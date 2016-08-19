@@ -25,7 +25,7 @@ require('./config/express')(app);
 
 // if bluemix credentials exists, then override local
 var alchemyLanguage = new watson.AlchemyLanguageV1({
-  //api_key: '<api-key>'
+// api_key: '<api-key>'
 });
 
 app.post('/api/:method', function(req, res, next) {
