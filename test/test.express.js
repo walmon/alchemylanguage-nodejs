@@ -16,6 +16,8 @@
 
 'use strict';
 
+require('dotenv').config({silent: true}); // this is loaded automatically in server.js but not app.js
+
 var app = require('../app');
 var request = require('supertest');
 
