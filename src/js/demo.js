@@ -155,8 +155,8 @@ $(document).ready(function() {
   }
 
   function getTargetedEmotion(text) {
-     var keywordsArray = [];
-     $.post('/api/keywords', {
+    var keywordsArray = [];
+    $.post('/api/keywords', {
        'text': text,
        emotion: 1
      }, function(data) {
@@ -175,11 +175,11 @@ $(document).ready(function() {
        $('#targeted-emotion-API-data').empty();
        $('#targeted-emotion-API-data').html(JSON.stringify(data, null, 2));
      }).fail(_error);
-   }
+  }
 
   function getTargetedEmotionURL(url) {
-      var keywordsArray = [];
-      $.post('/api/keywords', {
+    var keywordsArray = [];
+    $.post('/api/keywords', {
         'url': url,
         emotion: 1
       }, function(data) {
@@ -198,7 +198,7 @@ $(document).ready(function() {
         $('#targeted-emotion-API-data').empty();
         $('#targeted-emotion-API-data').html(JSON.stringify(data, null, 2));
       }).fail(_error);
-    }
+  }
 
 
   function getLanguageSentiment(text) {
