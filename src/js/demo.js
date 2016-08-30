@@ -154,9 +154,7 @@ $(document).ready(function() {
     }).fail(_error);
   }
 
-
-
-   function getTargetedEmotion(text) {
+  function getTargetedEmotion(text) {
      var keywordsArray = [];
      $.post('/api/keywords', {
        'text': text,
@@ -179,7 +177,7 @@ $(document).ready(function() {
      }).fail(_error);
    }
 
-    function getTargetedEmotionURL(url) {
+  function getTargetedEmotionURL(url) {
       var keywordsArray = [];
       $.post('/api/keywords', {
         'url': url,
