@@ -101,7 +101,7 @@ $(document).ready(function() {
     getLanguageEntitiesURL(url);
     getLanguageFeedsURL(url);
     getLanguageKeywordsURL(url);
-    getLanguageLanguageURL(url);
+    getLanguageLanguage(url);
     getLanguageRelationsURL(url);
     getLanguageTargetedSentimentURL(url);
     getLanguageTaxonomyURL(url);
@@ -154,49 +154,54 @@ $(document).ready(function() {
     }).fail(_error);
   }
 
-  function getTargetedEmotion(text) {
-    var keywordsArray = [];
-    $.post('/api/keywords', {
-      'text': text,
-      emotion: 1
-    }, function(data) {
-      data.keywords.forEach(function(keyword) {
-        keywordsArray.push(keyword.text);
-      });
-      $.post('/api/emotion', {
-        'text': text,
-        'targets': keywordsArray
-      }, function(emotionData) {
-        $('.targetedemotion-table').html(_.template(targetedemotion_template, {
-          items: emotionData.results
-        }));
-      }).fail(_error);
-      $('#targeted-emotion-API-data').empty();
-      $('#targeted-emotion-API-data').html(JSON.stringify(data, null, 2));
-    }).fail(_error);
-  }
 
-  function getTargetedEmotionURL(url) {
-    var keywordsArray = [];
-    $.post('/api/keywords', {
-      'url': url,
-      emotion: 1
-    }, function(data) {
-      data.keywords.forEach(function(keyword) {
-        keywordsArray.push(keyword.text);
-      });
-      $.post('/api/emotion', {
+
+   function getTargetedEmotion(text) {
+     var keywordsArray = [];
+     $.post('/api/keywords', {
+       'text': text,
+       emotion: 1
+     }, function(data) {
+       data.keywords.forEach(function(keyword) {
+         keywordsArray.push(keyword.text);
+       });
+
+       $.post('/api/emotion', {
+         'text': text,
+         'targets': keywordsArray
+       }, function(emotionData) {
+         $('.targetedemotion-table').html(_.template(targetedemotion_template, {
+           items: emotionData.results
+         }));
+       }).fail(_error);
+       $('#targeted-emotion-API-data').empty();
+       $('#targeted-emotion-API-data').html(JSON.stringify(data, null, 2));
+     }).fail(_error);
+   }
+
+    function getTargetedEmotionURL(url) {
+      var keywordsArray = [];
+      $.post('/api/keywords', {
         'url': url,
-        'targets': keywordsArray
-      }, function(emotionData) {
-        $('.targetedemotion-table').html(_.template(targetedemotion_template, {
-          items: emotionData.results
-        }));
+        emotion: 1
+      }, function(data) {
+        data.keywords.forEach(function(keyword) {
+          keywordsArray.push(keyword.text);
+        });
+
+        $.post('/api/emotion', {
+          'url': url,
+          'targets': keywordsArray
+        }, function(emotionData) {
+          $('.targetedemotion-table').html(_.template(targetedemotion_template, {
+            items: emotionData.results
+          }));
+        }).fail(_error);
+        $('#targeted-emotion-API-data').empty();
+        $('#targeted-emotion-API-data').html(JSON.stringify(data, null, 2));
       }).fail(_error);
-      $('#targeted-emotion-API-data').empty();
-      $('#targeted-emotion-API-data').html(JSON.stringify(data, null, 2));
-    }).fail(_error);
-  }
+    }
+
 
   function getLanguageSentiment(text) {
     $.post('/api/sentiment', {
@@ -297,7 +302,8 @@ $(document).ready(function() {
     $.post('/api/entities', {
       'text': text,
       model: model,
-      sentiment: 1
+      sentiment: 1,
+      emotion: 1
     }, function(data) {
       $('.entities-table').html(_.template(entities_template, {
         items: data.entities
@@ -329,7 +335,8 @@ $(document).ready(function() {
     $.post('/api/entities', {
       'url': url,
       model: model,
-      sentiment: 1
+      sentiment: 1,
+      emotion: 1
     }, function(data) {
       $('.entities-table').html(_.template(entities_template, {
         items: data.entities
@@ -346,6 +353,7 @@ $(document).ready(function() {
       sentiment: 1,
       linkedData: 1,
       relevance: 1,
+      emotion: 1,
       subType: 1
     }, function(data) {
       $('.entities-table').html(_.template(entities_template, {
@@ -359,7 +367,8 @@ $(document).ready(function() {
   function getLanguageKeywords(text) {
     $.post('/api/keywords', {
       'text': text,
-      sentiment: 1
+      sentiment: 1,
+      emotion: 1
     }, function(data) {
       $('.keywords-table').html(_.template(keywords_template, {
         items: data.keywords
@@ -396,19 +405,6 @@ $(document).ready(function() {
       $('#relations-API-data').html(JSON.stringify(data, null, 2));
     }).fail(_error);
   }
-
-  function getLanguageLanguageURL(url) {
-    $.post('/api/language', {
-      'url': url
-    }, function(data) {
-      $('.language-table').html(_.template(language_template, {
-        item: data
-      }));
-      $('#language-API-data').empty();
-      $('#language-API-data').html(JSON.stringify(data, null, 2));
-    }).fail(_error);
-  }
-
 
   function getLanguageTaxonomy(text) {
     $.post('/api/taxonomy', {
@@ -518,6 +514,7 @@ $(document).ready(function() {
       sentiment: 1,
       linkedData: 1,
       relevance: 1,
+      emotion: 1,
       subType: 1
     }, function(data) {
       $('.entities-table').html(_.template(entities_template, {
@@ -531,7 +528,8 @@ $(document).ready(function() {
   function getLanguageKeywordsURL(url) {
     $.post('/api/keywords', {
       'url': url,
-      sentiment: 1
+      sentiment: 1,
+      emotion: 1
     }, function(data) {
       $('.keywords-table').html(_.template(keywords_template, {
         items: data.keywords

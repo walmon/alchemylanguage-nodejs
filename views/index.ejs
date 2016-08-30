@@ -36,7 +36,7 @@
                 </li>
                 <li class="base--li heading-nav--li" role="presentation">
                     <a class="heading-nav--item" href="https://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/starter-kits.html" target="_blank" role="menuitem">
-						Starter Kits
+						App Gallery
 					</a>
                 </li>
                 <li class="base--li heading-nav--li" role="presentation">
@@ -324,10 +324,10 @@
                             </p>
                             <div class="btn-all-container">
                                 <div class="base--p right-float"><span class="icon icon-code"></span>
-                                    <span class="base--a json-btn" target="54" href="">View JSON</span>
+                                    <span class="base--a json-btn" target="56" href="">View JSON</span>
                                 </div>
                             </div>
-                            <div id="json54" class="input--API base--code int-hide">
+                            <div id="json56" class="input--API base--code int-hide">
                                 <pre class="API--json">
                                     <code id="targeted-emotion-API-data" class="language-javascript ">
                                     </code>
@@ -418,23 +418,12 @@
                                 </code>
                               </pre>
                             </div>
-
-
-
                             <table class="base--table">
-                                <thead class="base--thead">
-                                    <tr class="base--tr">
-                                        <td class="base--td">Entity</td>
-                                        <td class="base--td relevance">Relevance</td>
-                                        <td class="base--td">Sentiment</td>
-                                        <td class="base--td">Type</td>
+                                <div class="base--tbody entities-table">
 
-                                    </tr>
-                                </thead>
-                                <tbody class="base--tbody entities-table">
-
-                                </tbody>
+                                </div>
                             </table>
+
 
                             <br>
                             <br>
@@ -495,17 +484,11 @@
                                 </code>
                               </pre>
                             </div>
-                            <table class="base--table ">
-                                <thead class="base--thead">
-                                    <tr class="base--tr">
-                                        <td class="base--td">Keywords</td>
-                                        <td class="base--td">Relevance</td>
-                                        <td class="base--td">Sentiment</td>
-                                    </tr>
-                                </thead>
-                                <tbody class="base--tbody keywords-table">
 
-                                </tbody>
+                            <table class="base--table">
+                                <div class="base--tbody keywords-table">
+
+                                </div>
                             </table>
 
                             <div class="btn-all-container">
@@ -751,7 +734,6 @@
                             <td class="base--td">Sentence</td>
                             <td class="base--td">Score</td>
                             <td class="base--td">Type</td>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -826,23 +808,89 @@
         </script>
 
         <script type="text/html" id="entitiesTemplate">
-            <% _.each(items, function(item, key, list) { %>
-                <tr class="base--tr entities">
-                    <td class="base--td">
-                        <%= item.text %>
-                    </td>
-                    <td class="base--td relevance">
-                        <%= item.relevance %>
-                    </td>
-                    <td class="base--td">
-                        <%= item.sentiment.type %>
-                    </td>
-                    <td class="base--td">
-                        <%= item.type %>
-                    </td>
-                </tr>
-            <% }); %>
-        </script>
+          <% _.each(items, function(item, key, list) { %>
+        <table class="base--table entities resultscontainter">
+          <thead class="base--thead" style="border-bottom: 0;">
+              <tr class="base--tr">
+                  <td class="base--td">Entity</td>
+                  <td class="base--td"><% if(item.relevance){ %>	Relevance <% } %></td>
+                  <td class="base--td">	Sentiment	</td>
+                  <td class="base--td">	Type	</td>
+              </tr>
+          </thead>
+                    <tbody>
+                    <tr class="base--tr">
+                        <td class="base--td">
+                            <%= item.text %>
+                        </td>
+                        <td class="base--td">
+                          <% if(item.relevance){ %>
+                            <%= item.relevance %>
+                              <% } %>
+                        </td>
+                        <td class="base--td">
+                            <%= item.sentiment.type %>
+                        </td>
+                        <td class="base--td">
+                            <%= item.type %>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <% if(item.emotions){ %>
+                    <thead class="base--thead nested-relations">
+                        <tr class="base--tr">
+                            <td class="base--td">Emotion</td>
+                            <td  colspan="3" class="base--td">Score</td>
+                        </tr>
+                    </thead>
+                    <% } %>
+                            <tbody>
+                              <% if(item.emotions){ %>
+                              <tr class="base--tr">
+                                  <td class="base--td">Anger</td>
+                                  <td  colspan="3" class="base--td">
+                                      <%= item.emotions.anger %>
+                                  </td>
+                              </tr>
+                              <% } %>
+                              <% if(item.emotions){ %>
+                              <tr class="base--tr">
+                                  <td class="base--td">Disgust</td>
+                                  <td colspan="3" class="base--td">
+                                      <%= item.emotions.disgust %>
+                                  </td>
+                              </tr>
+                              <% } %>
+                              <% if(item.emotions){ %>
+                              <tr class="base--tr">
+                                  <td class="base--td">Fear</td>
+                                  <td colspan="3" class="base--td">
+                                      <%= item.emotions.fear %>
+                                  </td>
+                              </tr>
+                              <% } %>
+                              <% if(item.emotions){ %>
+                              <tr class="base--tr">
+                                  <td class="base--td">Joy</td>
+                                  <td colspan="3" class="base--td">
+                                      <%= item.emotions.joy %>
+                                  </td>
+                              </tr>
+                              <% } %>
+                              <% if(item.emotions){ %>
+                              <tr class="base--tr">
+                                  <td class="base--td">Sadness</td>
+                                  <td colspan="3" class="base--td">
+                                      <%= item.emotions.sadness %>
+                                  </td>
+                              </tr>
+                              <% } %>
+                                </tbody>
+                </table>
+
+        <% }); %>
+            </script>
+
 
         <script type="text/html" id="targetedemotionTemplate">
 <% _.each(items, function(item, key, list) { %>
@@ -954,20 +1002,84 @@
         </script>
 
         <script type="text/html" id="keywordsTemplate">
-            <% _.each(items, function(item, key, list) { %>
-                <tr class="base--tr keywords">
-                    <td class="base--td">
-                        <%= item.text %>
-                    </td>
-                    <td class="base--td">
-                        <%= item.relevance %>
-                    </td>
-                    <td class="base--td">
-                        <%= item.sentiment.type %>
-                    </td>
-                </tr>
-                <% }); %>
-        </script>
+          <% _.each(items, function(item, key, list) { %>
+        <table class="base--table keywords resultscontainter">
+          <thead class="base--thead" style="border-bottom: 0;">
+              <tr class="base--tr">
+                  <td class="base--td">Keywords</td>
+                  <td class="base--td">Relevance</td>
+                  <td class="base--td">Sentiment</td>
+                  <td class="base--td"></td>
+              </tr>
+          </thead>
+                    <tbody>
+                    <tr class="base--tr">
+                        <td class="base--td">
+                            <%= item.text %>
+                        </td>
+                        <td class="base--td">
+                            <%= item.relevance %>
+                        </td>
+                        <td class="base--td">
+                            <%= item.sentiment.type %>
+                        </td>
+                        <td class="base--td"></td>
+                    </tr>
+                    </tbody>
+                    <% if(item.emotions){ %>
+                    <thead class="base--thead nested-relations">
+                        <tr class="base--tr">
+                            <td class="base--td">Emotion</td>
+                            <td  colspan="3" class="base--td">Score</td>
+                        </tr>
+                    </thead>
+                    <% } %>
+                            <tbody>
+                              <% if(item.emotions){ %>
+                              <tr class="base--tr">
+                                  <td class="base--td">Anger</td>
+                                  <td  colspan="3" class="base--td">
+                                      <%= item.emotions.anger %>
+                                  </td>
+                              </tr>
+                              <% } %>
+                              <% if(item.emotions){ %>
+                              <tr class="base--tr">
+                                  <td class="base--td">Disgust</td>
+                                  <td colspan="3" class="base--td">
+                                      <%= item.emotions.disgust %>
+                                  </td>
+                              </tr>
+                              <% } %>
+                              <% if(item.emotions){ %>
+                              <tr class="base--tr">
+                                  <td class="base--td">Fear</td>
+                                  <td colspan="3" class="base--td">
+                                      <%= item.emotions.fear %>
+                                  </td>
+                              </tr>
+                              <% } %>
+                              <% if(item.emotions){ %>
+                              <tr class="base--tr">
+                                  <td class="base--td">Joy</td>
+                                  <td colspan="3" class="base--td">
+                                      <%= item.emotions.joy %>
+                                  </td>
+                              </tr>
+                              <% } %>
+                              <% if(item.emotions){ %>
+                              <tr class="base--tr">
+                                  <td class="base--td">Sadness</td>
+                                  <td colspan="3" class="base--td">
+                                      <%= item.emotions.sadness %>
+                                  </td>
+                              </tr>
+                              <% } %>
+                                </tbody>
+                </table>
+
+        <% }); %>
+            </script>
 
         <script type="text/html" id="titleTemplate">
 
@@ -1274,18 +1386,19 @@
                 <% }); %>
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
-        <script type="text/javascript" src="js/demo.js"></script>
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+              <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+              <script type="text/javascript" src="js/demo.js"></script>
+              <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-          ga('create', '<$= locals.ga $>', 'auto');
-          ga('send', 'pageview');
+                ga('create', '<$= locals.ga $>', 'auto');
+                ga('send', 'pageview');
 
-        </script>
+              </script>
+
 </body>
 
 </html>
