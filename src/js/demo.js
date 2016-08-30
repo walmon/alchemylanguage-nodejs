@@ -157,9 +157,9 @@ $(document).ready(function() {
   function getTargetedEmotion(text) {
     var keywordsArray = [];
     $.post('/api/keywords', {
-       'text': text,
-       emotion: 1
-     }, function(data) {
+      'text': text,
+      emotion: 1
+    }, function(data) {
        data.keywords.forEach(function(keyword) {
          keywordsArray.push(keyword.text);
        });
@@ -180,9 +180,9 @@ $(document).ready(function() {
   function getTargetedEmotionURL(url) {
     var keywordsArray = [];
     $.post('/api/keywords', {
-        'url': url,
-        emotion: 1
-      }, function(data) {
+      'url': url,
+      emotion: 1
+    }, function(data) {
         data.keywords.forEach(function(keyword) {
           keywordsArray.push(keyword.text);
         });
