@@ -38,7 +38,7 @@ $(document).ready(function() {
   });
   // view all/top Buttons
   $('.btn-all-results-keywords').click(function() {
-    $('.keywords:gt(7)').toggle('fast');
+    $('.keywords:gt(2)').toggle('fast');
     if ($.trim($(this).text()) === 'View top results') {
       $(this).text('View all results');
     } else {
@@ -46,7 +46,7 @@ $(document).ready(function() {
     }
   });
   $('.btn-all-results-entities').click(function() {
-    $('.entities:gt(7)').toggle('fast');
+    $('.entities:gt(2)').toggle('fast');
     if ($.trim($(this).text()) === 'View top results') {
       $(this).text('View all results');
     } else {
@@ -158,13 +158,13 @@ $(document).ready(function() {
   });
   // Only show a limited list of results instially
   $(document).ajaxComplete(function() {
-    if ($('.keywords').length > 7) {
-      $('.keywords:gt(7)').hide();
+    if ($('.keywords').length > 1) {
+      $('.keywords:gt(1)').hide();
     }
   });
   $(document).ajaxComplete(function() {
-    if ($('.entities').length > 7) {
-      $('.entities:gt(7)').hide();
+    if ($('.entities').length > 1) {
+      $('.entities:gt(1)').hide();
     }
   });
   $(document).ajaxComplete(function() {
@@ -196,14 +196,14 @@ $(document).ready(function() {
     }
   });
   $(document).ajaxComplete(function() {
-    if ($('.entities').length < 9) {
+    if ($('.entities').length < 2) {
       $('.btn-all-results-entities').hide();
     } else {
       $('.btn-all-results-entities').show();
     }
   });
   $(document).ajaxComplete(function() {
-    if ($('.keywords').length < 9) {
+    if ($('.keywords').length < 2) {
       $('.btn-all-results-keywords').hide();
     } else {
       $('.btn-all-results-keywords').show();

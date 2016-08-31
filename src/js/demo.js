@@ -297,7 +297,8 @@ $(document).ready(function() {
     $.post('/api/entities', {
       'text': text,
       model: model,
-      sentiment: 1
+      sentiment: 1,
+      emotion: 1
     }, function(data) {
       $('.entities-table').html(_.template(entities_template, {
         items: data.entities
@@ -329,7 +330,8 @@ $(document).ready(function() {
     $.post('/api/entities', {
       'url': url,
       model: model,
-      sentiment: 1
+      sentiment: 1,
+      emotion: 1
     }, function(data) {
       $('.entities-table').html(_.template(entities_template, {
         items: data.entities
@@ -346,6 +348,7 @@ $(document).ready(function() {
       sentiment: 1,
       linkedData: 1,
       relevance: 1,
+      emotion: 1,
       subType: 1
     }, function(data) {
       $('.entities-table').html(_.template(entities_template, {
@@ -359,7 +362,8 @@ $(document).ready(function() {
   function getLanguageKeywords(text) {
     $.post('/api/keywords', {
       'text': text,
-      sentiment: 1
+      sentiment: 1,
+      emotion: 1
     }, function(data) {
       $('.keywords-table').html(_.template(keywords_template, {
         items: data.keywords
@@ -372,6 +376,18 @@ $(document).ready(function() {
   function getLanguageLanguage(text) {
     $.post('/api/language', {
       'text': text
+    }, function(data) {
+      $('.language-table').html(_.template(language_template, {
+        item: data
+      }));
+      $('#language-API-data').empty();
+      $('#language-API-data').html(JSON.stringify(data, null, 2));
+    }).fail(_error);
+  }
+
+  function getLanguageLanguageURL(url) {
+    $.post('/api/language', {
+      'url': url
     }, function(data) {
       $('.language-table').html(_.template(language_template, {
         item: data
@@ -396,19 +412,6 @@ $(document).ready(function() {
       $('#relations-API-data').html(JSON.stringify(data, null, 2));
     }).fail(_error);
   }
-
-  function getLanguageLanguageURL(url) {
-    $.post('/api/language', {
-      'url': url
-    }, function(data) {
-      $('.language-table').html(_.template(language_template, {
-        item: data
-      }));
-      $('#language-API-data').empty();
-      $('#language-API-data').html(JSON.stringify(data, null, 2));
-    }).fail(_error);
-  }
-
 
   function getLanguageTaxonomy(text) {
     $.post('/api/taxonomy', {
@@ -518,6 +521,7 @@ $(document).ready(function() {
       sentiment: 1,
       linkedData: 1,
       relevance: 1,
+      emotion: 1,
       subType: 1
     }, function(data) {
       $('.entities-table').html(_.template(entities_template, {
@@ -531,7 +535,8 @@ $(document).ready(function() {
   function getLanguageKeywordsURL(url) {
     $.post('/api/keywords', {
       'url': url,
-      sentiment: 1
+      sentiment: 1,
+      emotion: 1
     }, function(data) {
       $('.keywords-table').html(_.template(keywords_template, {
         items: data.keywords
