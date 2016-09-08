@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -824,7 +825,10 @@
                               <% } %>
                         </td>
                         <td class="base--td">
+                         <% if(item.sentiment && item.sentiment.type){ %>
                             <%= item.sentiment.type %>
+                              <% } %>
+
                         </td>
                         <td class="base--td">
                             <%= item.type %>
@@ -1016,7 +1020,9 @@
                             <%= item.relevance %>
                         </td>
                         <td class="base--td">
+                        <% if(item.sentiment && item.sentiment.type){ %>
                             <%= item.sentiment.type %>
+                              <% } %>
                         </td>
                         <td class="base--td"></td>
                     </tr>
@@ -1372,7 +1378,9 @@
                         <%= item.text %>
                     </td>
                     <td class="base--td">
-                        <%=item.sentiment.type %>
+                     <% if(item.sentiment && item.sentiment.type){ %>
+                            <%= item.sentiment.type %>
+                              <% } %>
                     </td>
                     <td class="base--td">
                         <%=item.sentiment.score %>
